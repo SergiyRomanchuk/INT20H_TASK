@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>TvProgram - Auth</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    <div class="alert alert-warning col-md-12 text-center">
+        Для використання сервісу нам необхідно отримати ключ доступу до сторінки вк.
+        Для цього натисніть кнопку "Отримати ключ" - відкриється нова вкладка з повідомленням від ВК.
+        Скопіюйте та вставте адресу з цього вікна у поле нижче. НЕ ПЕРЕДАВАЙТЕ ПОСИЛАННЯ ТРЕТІМ ОСОБАМ.
+        Ви бачите це повідомлення, бо додаток запущено на локальному комп'ютері, у доменній версії передача ключа автоматична.
+    </div>
+<div class="col-md-6">
+    
+    <button class="form-control btn btn-danger"
+            onclick="window.open('https://oauth.vk.com/authorize?client_id=5870846&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=manage,photos,docs,wall&response_type=token&v=5.62')">ТОКЕН</button>
+</div>
+    <div class="col-md-12">
+        <form class="form-horizontal" method="POST" action="../Home/Auth">
+            <div class="form-group">
+                <div class="col-md-8">
+                     <input type="password" name="AuthLink" class="form-control" placeholder="Вставте посилання сюди"/>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="form-control btn btn-success">Авторизуватися</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

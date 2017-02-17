@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BD131D6-93F9-4590-A82E-D5AE542C9419}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProgrammCreator.Domain</RootNamespace>
+    <AssemblyName>ProgrammCreator.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enities\TvProgramRoot.cs" />
+    <Compile Include="Enities\TvProgram.cs" />
+    <Compile Include="Enities\TvShow.cs" />
+    <Compile Include="Enities\VkGroup.cs" />
+    <Compile Include="Enities\VkPhotoUploadObjects.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Contracts\IGroupSelector.cs" />
+    <Compile Include="Services\Contracts\IOvvaService.cs" />
+    <Compile Include="Services\Contracts\IPictureGenerator.cs" />
+    <Compile Include="Services\Contracts\IPictureService.cs" />
+    <Compile Include="Services\Contracts\IProgramSelector.cs" />
+    <Compile Include="Services\Contracts\IVkPhotoManager.cs" />
+    <Compile Include="Services\Contracts\IVkPhotoPoster.cs" />
+    <Compile Include="Services\Contracts\IVkService.cs" />
+    <Compile Include="Services\Contracts\VkPhotoUploadingContracts.cs" />
+    <Compile Include="Services\Images\Generators\TablePictureGenerator.cs" />
+    <Compile Include="Services\Images\Helpers\ImageHelper.cs" />
+    <Compile Include="Services\Selectors\ChannelSelectors\OnePlusOneProgrammSelector.cs" />
+    <Compile Include="Services\Selectors\ProgramSelector.cs" />
+    <Compile Include="Services\Selectors\VkSelectors\AdminGroupSelector.cs" />
+    <Compile Include="Services\ServiceImplementations\OvvaService.cs" />
+    <Compile Include="Services\ServiceImplementations\PictureService.cs" />
+    <Compile Include="Services\ServiceImplementations\VkService.cs" />
+    <Compile Include="Services\VkRequests\Implementations\Vk\VkPhotoWorker.cs" />
+    <Compile Include="Services\VkRequests\Implementations\Vk\VkWallPhotoWorker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

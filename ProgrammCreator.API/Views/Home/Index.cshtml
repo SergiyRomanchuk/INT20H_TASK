@@ -1,0 +1,79 @@
+﻿@model ProgrammCreator.API.Models.MainPageViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>TvProgram - Auth</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/main.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.get('/api/picture/',
+                function(data) {
+                    //$('#picture_block').html("<img src='" + data.Path + "' />");
+                    $('#picture_result').attr("src", data.Path);
+                });
+            $('.owner_photo_btn').click(function() {
+                var url = '/Home/OwnerPhoto?groupId=' + $(this).val();
+                vkGroupAction(url);
+            });
+            $('.wall_post_btn').click(function() {
+                var url = '/Home/WallPost?groupId=' + $(this).val();
+                vkGroupAction(url);
+            });
+
+            function vkGroupAction(url) {
+                $.get(url,
+                    function() {
+                        alert("success!");
+                    });
+            }
+        })
+    </script>
+</head>
+<body>
+    <div class="alert alert-warning col-md-12 text-center">
+        Вітаю у нашому сервісі! id = @Model.VkUserId
+        <input type="hidden" id="vk_user_id" value ="@Model.VkUserId"/>
+    </div>
+    <div class="row">
+        <div id="picture_block" class="col-md-4 col-md-offset-1">
+            <h3>Ваше фото:</h3>
+            <img class="img-preview" id="picture_result" alt="Your picture no generated" src="#" />
+        </div>
+        <div id="group_list" class="col-md-3 col-md-offset-3">
+            <h3>Ваші групи:</h3>
+            @if (Model?.UserGroups == null)
+            {
+                <div class="col-md-12 alert alert-danger text-center">
+                    Вибачте, ми не можемо знайти групу, де ви були б адміністратором.
+                    Ознайомитися з результатами роботи сервісу можна у <a href="https://vk.com/club140095872">ГРУПІ</a>
+                </div>
+            }
+            else
+            {
+                foreach (var group in Model.UserGroups)
+                {
+                    <div class="col-md-12 panel panel-default">
+                        <div class="panel-heading text-center">
+                            @group.Name
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <button class="form-control btn btn-success wall_post_btn" value="@group.Id">На стіну</button>
+                                <button class="form-control btn btn-warning owner_photo_btn" value="@group.Id">На головну</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</body>
+</html>
