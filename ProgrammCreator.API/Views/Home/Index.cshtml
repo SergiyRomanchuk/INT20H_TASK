@@ -30,15 +30,18 @@
 
             function vkGroupAction(url) {
                 $.get(url,
-                    function() {
-                        alert("success!");
+                    function () {
+                        var userMessageAlert = $('#user_message');
+                        userMessageAlert.removeClass("alert-warning");
+                        userMessageAlert.addClass("alert-success");
+                        userMessageAlert.html("Успішно виконано!");
                     });
             }
         })
     </script>
 </head>
 <body>
-    <div class="alert alert-warning col-md-12 text-center">
+    <div id="user_message" class="alert alert-warning col-md-12 text-center">
         Вітаю у нашому сервісі! id = @Model.VkUserId
         <input type="hidden" id="vk_user_id" value ="@Model.VkUserId"/>
     </div>

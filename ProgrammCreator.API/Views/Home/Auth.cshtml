@@ -13,24 +13,36 @@
     
 </head>
 <body>
-    <div class="alert alert-warning col-md-12 text-center">
-        Для використання сервісу нам необхідно отримати ключ доступу до сторінки вк.
-        Для цього натисніть кнопку "Отримати ключ" - відкриється нова вкладка з повідомленням від ВК.
-        Скопіюйте та вставте адресу з цього вікна у поле нижче. НЕ ПЕРЕДАВАЙТЕ ПОСИЛАННЯ ТРЕТІМ ОСОБАМ.
-        Ви бачите це повідомлення, бо додаток запущено на локальному комп'ютері, у доменній версії передача ключа автоматична.
-    </div>
-<div class="col-md-6">
-    
-    <button class="form-control btn btn-danger"
-            onclick="window.open('https://oauth.vk.com/authorize?client_id=5870846&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=manage,photos,docs,wall&response_type=token&v=5.62')">ТОКЕН</button>
+<div class="alert alert-warning col-md-12 text-center">
+    Для використання сервісу нам необхідно отримати ключ доступу до сторінки вк.
+    Для цього натисніть кнопку "Отримати ключ" - відкриється нова вкладка з повідомленням від ВК.
+    Скопіюйте та вставте адресу з цього вікна у поле нижче. НЕ ПЕРЕДАВАЙТЕ ПОСИЛАННЯ ТРЕТІМ ОСОБАМ.
+    Ви бачите це повідомлення, бо додаток запущено на локальному комп'ютері, у доменній версії передача ключа автоматична.
 </div>
-    <div class="col-md-12">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 text-center">
+        <h2>Генератор телепрограми</h2>
+    </div>
+</div>
+
+    <div class="row">
         <form class="form-horizontal" method="POST" action="../Home/Auth">
             <div class="form-group">
-                <div class="col-md-8">
-                     <input type="password" name="AuthLink" class="form-control" placeholder="Вставте посилання сюди"/>
+                <div class="col-md-4 col-md-offset-2">
+                    Натисніть сюди, щоб дати доступ до вк:
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3 col-md-offset-1">
+                    <button class="form-control btn btn-danger"
+                            onclick="window.open('https://oauth.vk.com/authorize?client_id=5870846&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=manage,photos,docs,wall&response_type=token&v=5.62')">
+                        Отримати ключ
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-2">
+                    <input type="password" name="AuthLink" class="form-control" placeholder="Вставте посилання сюди"/>
+                </div>
+                <div class="col-md-2">
                     <button type="submit" class="form-control btn btn-success">Авторизуватися</button>
                 </div>
             </div>

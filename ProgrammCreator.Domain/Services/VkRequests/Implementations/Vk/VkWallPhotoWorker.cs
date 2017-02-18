@@ -12,7 +12,7 @@ using ProgrammCreator.Domain.Services.Contracts;
 
 namespace ProgrammCreator.Domain.Services.VkRequests.Implementations.Vk
 {
-    public class VkWallPhotoWorker : IVkPhotoWorker, IVkWallPoster
+    public class VkWallPhotoWorker : IVkWallPhotoPoster
     {
         private string _accessToken;
 
