@@ -9,7 +9,7 @@ namespace ProgrammCreator.Domain.Services.Contracts
 {
     public interface IVkService
     {
-        Task<Photo> PublishPhoto(int groupId);
+        Task<Photo> PublishPhoto(int groupId, string folderPath);
         Task<UserGroups> GetGroups(string userId);
         IVkPhotoWorker PhotoWorker { set; }
     }

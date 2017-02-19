@@ -40,9 +40,9 @@ namespace ProgrammCreator.Domain.Services.ServiceImplementations
             return _vkGroupSelector.GetGroupsByUser(userId);
         }
         
-        public async Task<Photo> PublishPhoto(int groupId)
+        public async Task<Photo> PublishPhoto(int groupId, string folderPath)
         {
-            return await _photoPoster.DoAction(GroupIdToCorrect(groupId), ImageHelper.GetBytes(HttpContext.Current.Server.MapPath("~/Content/ImageResults/") + "result.jpg"));
+            return await _photoPoster.DoAction(GroupIdToCorrect(groupId), folderPath, ImageHelper.GetBytes(folderPath + "result.jpg"));
         }
 
         private int GroupIdToCorrect(int groupId)

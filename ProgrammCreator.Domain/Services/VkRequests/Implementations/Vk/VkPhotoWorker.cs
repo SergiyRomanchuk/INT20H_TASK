@@ -31,7 +31,7 @@ namespace ProgrammCreator.Domain.Services.VkRequests.Implementations.Vk
             }
         }
 
-        public async Task<UploadPhotoResult> UploadPhoto(string url, byte[] photo)
+        public async Task<UploadPhotoResult> UploadPhoto(string url, string photoFolderPath, byte[] photo)
         {
             HttpClient client = new HttpClient();
             MultipartContent content = new System.Net.Http.MultipartFormDataContent();
@@ -39,7 +39,7 @@ namespace ProgrammCreator.Domain.Services.VkRequests.Implementations.Vk
             photoFile.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
             {
                 Name = "photo",
-                FileName = HttpContext.Current.Server.MapPath("~/Content/ImageResult/") + "result.jpg",
+                FileName = photoFolderPath + "result.jpg",
             };
             content.Add(photoFile);
             HttpResponseMessage response = await client.PostAsync(url, content);
@@ -61,10 +61,10 @@ namespace ProgrammCreator.Domain.Services.VkRequests.Implementations.Vk
             }
         }
 
-        public async Task<Photo> DoAction(int id, byte[] photo)
+        public async Task<Photo> DoAction(int id, string photoFolderPath, byte[] photo)
         {
             var urlResponse = await this.GetUploadUrl(id);
-            var uploadResponse = await this.UploadPhoto(urlResponse.UploadUrl, photo);
+            var uploadResponse = await this.UploadPhoto(urlResponse.UploadUrl, photoFolderPath, photo);
             return await this.SavePhoto(uploadResponse, Math.Abs(id));
         }
     }

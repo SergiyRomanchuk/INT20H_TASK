@@ -31,7 +31,7 @@ namespace ProgrammCreator.Domain.Services.VkRequests.Implementations.Vk
             }
         }
 
-        public async Task<UploadPhotoResult> UploadPhoto(string url, byte[] photo)
+        public async Task<UploadPhotoResult> UploadPhoto(string url, string folderPhotoPath, byte[] photo)
         {
             HttpClient client = new HttpClient();
             MultipartContent content = new System.Net.Http.MultipartFormDataContent();
@@ -39,7 +39,7 @@ namespace ProgrammCreator.Domain.Services.VkRequests.Implementations.Vk
             photoFile.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
             {
                 Name = "photo",
-                FileName = HttpContext.Current.Server.MapPath("~/Content/ImageResult/") + "result.jpg",
+                FileName = folderPhotoPath + "result.jpg",
             };
             content.Add(photoFile);
             HttpResponseMessage response = await client.PostAsync(url, content);
@@ -76,12 +76,12 @@ namespace ProgrammCreator.Domain.Services.VkRequests.Implementations.Vk
             }
         }
 
-        public async Task<Photo> DoAction(int id, byte[] photo)
+        public async Task<Photo> DoAction(int id, string folderPhotoPath, byte[] photo)
         {
             //Next methods must have groupId > 0
             id = Math.Abs(id);
             var urlResponse = await this.GetUploadUrl(id);
-            var uploadResponse = await this.UploadPhoto(urlResponse.UploadUrl, photo);
+            var uploadResponse = await this.UploadPhoto(urlResponse.UploadUrl, folderPhotoPath, photo);
             var photoResult = await this.SavePhoto(uploadResponse, id);
             var wallPostResponse = await this.WallPost(-1*id, "photo", photoResult.OwnerId, photoResult.PhotoId);
             return photoResult;

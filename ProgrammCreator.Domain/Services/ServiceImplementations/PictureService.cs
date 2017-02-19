@@ -42,14 +42,13 @@ namespace ProgrammCreator.Domain.Services.ServiceImplementations
             string fileName = folderPath.EndsWith("/") ? "result.jpg" : "/result.jpg";
             var picturePath = String.Concat(folderPath, fileName);
             tvProgramBitmap.Save(picturePath);
-            return picturePath.Replace(HttpContext.Current.Server.MapPath("~/"), String.Empty);
-            
+            return picturePath;
         }
 
-        public string GenerateAndSaveFile(TvProgram program)
+        public string GenerateAndSaveFile(TvProgram program, string folderPath)
         {
             return this.GenerateAndSaveFile(program.Programs,
-                HttpContext.Current.Server.MapPath("~/Content/ImageResults"));
+                folderPath);
         }
     }
 }

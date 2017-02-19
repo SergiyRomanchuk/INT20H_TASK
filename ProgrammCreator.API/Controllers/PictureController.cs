@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using ProgrammCreator.API.Models;
 using ProgrammCreator.Domain.Enities;
@@ -40,8 +41,9 @@ namespace ProgrammCreator.API.Controllers
             try
             {
                 var ovvaResponse = await OvvaService.GetProgramm();
-                var picturePath = PictureService.GenerateAndSaveFile(ovvaResponse.Program);
-                return new PictureDTO() {Path = picturePath};
+                var realServerPath = HttpContext.Current.Server.MapPath("~");
+                var picturePath = PictureService.GenerateAndSaveFile(ovvaResponse.Program, realServerPath+ "/Content/ImageResults/");
+                return new PictureDTO() {Path = picturePath.Replace(realServerPath, String.Empty)};
             }
             catch
             {

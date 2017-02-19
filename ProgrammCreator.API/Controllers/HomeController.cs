@@ -22,6 +22,11 @@ namespace ProgrammCreator.API.Controllers
                 return sessionObject.ToString();
             }
         }
+
+        public string FolderPath
+        {
+            get { return HttpContext.Server.MapPath("~/Content/ImageResults/"); }
+        }
         /*
          VKApi: ID: 5870848
          Key: W7k78MIIZkGh3hGwmevP
@@ -88,7 +93,7 @@ namespace ProgrammCreator.API.Controllers
             };
             try
             {
-                await VkService.PublishPhoto(groupId);
+                await VkService.PublishPhoto(groupId, FolderPath);
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
             catch
@@ -106,7 +111,7 @@ namespace ProgrammCreator.API.Controllers
             };
             try
             {
-                await VkService.PublishPhoto(groupId);
+                await VkService.PublishPhoto(groupId, FolderPath);
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
             catch

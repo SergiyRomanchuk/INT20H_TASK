@@ -6,9 +6,9 @@ namespace ProgrammCreator.Domain.Services.Contracts
     public interface IVkPhotoWorker
     {
         Task<UrlResponse> GetUploadUrl(int id);
-        Task<UploadPhotoResult> UploadPhoto(string url, byte[] photo);
+        Task<UploadPhotoResult> UploadPhoto(string url, string folderPhotoPath, byte[] photo);
         Task<Photo> SavePhoto(UploadPhotoResult savingData, int id);
-        Task<Photo> DoAction(int id, byte[] photo);
+        Task<Photo> DoAction(int id, string folderPhotoPath, byte[] photo);
     }
 
     public interface IVkWallPhotoPoster : IVkPhotoWorker
